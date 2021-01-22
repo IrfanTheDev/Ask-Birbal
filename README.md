@@ -20,9 +20,9 @@ Note the quality of the following clips may be lower due to conversion from vide
 
 
 ### Interactive Buttons.
-<img src="Demo/p5bookmark.gif" width=80%/> Bookmark
-<img src="Demo/p5like.gif" width=80%/> Like
-<img src="Demo/p5helpful.gif" width=80%/> Helpful
+<img src="Demo/p5bookmark.gif" width=80%/> **Bookmark**
+<img src="Demo/p5like.gif" width=80%/> **Like**
+<img src="Demo/p5helpful.gif" width=80%/> **Helpful**
 
 
 ### Profile.
