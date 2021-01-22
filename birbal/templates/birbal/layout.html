@@ -1,0 +1,250 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Birbal{% endblock %}</title>
+
+    <!-- This below link is for connecting css from bootstrap. -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" 
+    crossorigin="anonymous">
+
+    <!-- This below link is for connecting icons from bootstrap. -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <!-- This below link is for javascript from bootstrap. -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous">
+    </script>
+
+    <script src="{% static 'birbal/script.js' %}"></script>
+
+
+</head>
+
+<body>
+
+    <!--Navbar. -->
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color:blueviolet;">
+        <div class="container-fluid" style="height: fit-content;">
+            <!-- Logo. -->
+            <div class="navbar-brand ">
+                <img src="{% static 'birbal/askbirbal_logo.png' %}" alt="Ask birbal logo" style="width: 120px;">
+            </div>
+
+            <!-- this block will only show in medium screen. -->
+            <div class="d-md-none d-block">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse border border-3 border-warning" id="navbarSupportedContent" class="" 
+                    style="background-color: black; text-align: center; padding: 10px; border-radius: 25px;">
+                    <ul class="navbar-nav">
+                        {% if user.is_authenticated %}
+                        <li class="nav-item p-1">
+                            <a class="btn btn-outline-warning" href="{% url 'profile'  user.username  %}"
+                             id="profile" data-id="{{ user.id }}">
+                            <strong>
+                                <i class="bi bi-person-circle"></i>
+                                {{ user.username }}
+                            </strong>
+                        </a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item p-1">
+                            <a class="btn btn-outline-warning " href="{% url 'index' %}">
+                                <i class="bi bi-bricks"></i> &nbsp;  All Post
+                            </a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item p-1">
+                            <a class="btn btn-outline-warning" href="{% url 'following' %}" id="following-view">
+                                <i class="bi bi-people-fill"></i>
+                                Following
+                            </a>
+                        </li>
+                        <li class="nav-item p-1">
+                            <a class="btn btn-outline-warning" href="{% url 'bookmark' %}" id="bookmark-view">
+                                <i class="bi bi-bookmark-check-fill"></i>
+                                Bookmark
+                            </a>
+                        </li>
+                        <li class="nav-item p-1">
+                            <a class="btn btn-outline-warning" href="{% url 'logout' %}">
+                                Log Out <i class="bi bi-box-arrow-right"></i>
+                            </a>
+                        </li>
+                        {% else %}
+
+                        <li class="nav-item p-1">
+                            <!-- Button trigger login modal -->
+                            <button type="button" class="btn btn-outline-warning " data-bs-toggle="modal"
+                                data-bs-target="#loginModal">
+                                <i class="bi bi-box-arrow-in-right"></i>
+                                Log In
+                            </button>
+                        </li>
+
+                        <li class="nav-item p-1">
+                            <a class="btn btn-outline-warning " href="{% url 'register' %}">
+                                <i class="bi bi-door-open-fill"></i>
+                                Register
+                            </a>
+                        </li>
+
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!--Login Modal. Only Apear when login is hit. -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Log in</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+                    {% if message %}
+                    <div class="alert alert-danger" role="alert">
+                        <div>{{ message }}</div>
+                    </div>
+
+                    {% endif %}
+
+                    <form action="{% url 'login' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            <input autofocus class="form-control" type="text" name="username" placeholder="Username">
+                        </div>
+                        <div class="form-group mb-3">
+                            <input class="form-control" type="password" name="password" placeholder="Password">
+                        </div>
+                        <input class="btn btn-warning" type="submit" value="Login">
+                    </form>
+
+
+                </div>
+                <div class="modal-footer">
+                    Don't have an account? <a href="{% url 'register' %}">Register here.</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Body of the page. -->
+    <div class="row bg-light">
+
+        <!-- 1 and left sticky block. It will disappear after medium screen.-->
+        <div class="d-md-block d-none col-3 position-sticky" 
+            style="position: sticky;
+                top: 0;
+                left: 0;
+                height: 500px;" >
+        
+            <div class="card card-body" style="margin-top: 30px; height: fit-content;">
+                <div class="border border-3 border-warning" 
+                    style="background-color: black; text-align: center; padding: 10px; border-radius: 25px;">
+                    {% if user.is_authenticated %}
+                    <div class="p-2">
+                        <a class="btn btn-outline-warning" href="{% url 'profile'  user.username  %}"
+                             id="profile" data-id="{{ user.id }}"
+                            style="width: 150px; border-radius: 25px;">
+                            <strong>
+                                <i class="bi bi-person-circle"></i>
+                                {{ user.username }}
+                            </strong>
+                        </a>
+
+                    </div>
+                    {% endif %}
+
+                    {% block body_left %}
+
+                    {% endblock %}
+
+                    <div class=" p-2">
+                        <a class="btn btn-outline-warning " href="{% url 'index' %}"
+                            style="width: 150px; border-radius: 25px;">
+                            <i class="bi bi-bricks"></i> &nbsp;  All Post
+                        </a>
+                    </div>
+
+                    {% if user.is_authenticated %}
+                    <div class="p-2">
+                        <a class="btn btn-outline-warning" href="{% url 'following' %}" id="following-view"
+                            style="width: 150px; border-radius: 25px;">
+                            <i class="bi bi-people-fill"></i>
+                            Following
+                        </a>
+                    </div>
+                    <div class=" p-2">
+                        <a class="btn btn-outline-warning" href="{% url 'bookmark' %}" id="bookmark-view"
+                            style="width: 150px; border-radius: 25px;">
+                            <i class="bi bi-bookmark-check-fill"></i>
+                            Bookmark
+                        </a>
+                    </div>
+                    <div class=" p-2">
+                        <a class="btn btn-outline-warning" href="{% url 'logout' %}"
+                            style="width: 150px; border-radius: 25px;">
+                            Log Out <i class="bi bi-box-arrow-right"></i>
+                        </a>
+                    </div>
+                    {% else %}
+
+                    <div class="p-2">
+                        <!-- Button trigger login modal -->
+                        <button type="button" class="btn btn-outline-warning " data-bs-toggle="modal"
+                            data-bs-target="#loginModal" style="width: 150px; border-radius: 25px;">
+                            <i class="bi bi-box-arrow-in-right"></i>
+                            Log In
+                        </button>
+                    </div>
+
+                    <div class="p-2">
+                        <a class="btn btn-outline-warning " href="{% url 'register' %}" 
+                        style="width: 150px; border-radius: 25px;">
+                            <i class="bi bi-door-open-fill"></i>
+                            Register
+                        </a>
+                    </div>
+
+                    {% endif %}
+                </div>
+            </div>
+
+            
+
+        </div>
+
+        <!-- 2 and main block  -->
+        <div class="col-12 col-md-8">
+
+            {% block body %}
+
+            {% endblock %}
+
+        </div>
+
+        
+    </div>
+
+
+</body>
+
+</html>

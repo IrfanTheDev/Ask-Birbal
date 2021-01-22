@@ -1,0 +1,102 @@
+{% load static %}
+
+{% for post in posts %}
+
+<div class="card my-3" style="border-radius: 8px; border-color: transparent; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);">
+    <div class="card-body">
+
+        {# Post header displaying post user's full name, username, profile picture, edit button, creation date #}
+        <div>
+            <a class="card-title" href="{% url 'profile' post.user.username %}" style="text-decoration:none">
+                <strong>{{ post.user.first_name }} {{ post.user.last_name }}</strong>
+            </a>
+            <a href="{% url 'profile' post.user.username %}" class="text-muted "
+                style="font-size: 0.9rem; text-decoration:none;">
+                @ {{ post.user.username }}
+            </a>
+
+            {% if user == post.user %}
+            <button style="float: right; font-size: small; padding: 4px 10px" data-postid="{{ post.id }}"
+                class="btn btn-outline-warning text-success edit" title="Edit Your Question.">
+                <i class="bi bi-pencil-square" style="color: black;"></i>
+            </button>
+            {% endif %}
+
+            <p style="font-size: small">
+                <small class="post-date">Asked on {{ post.created_at }}</small>
+            </p>
+        </div>
+
+        <hr>
+
+        {# Post content #}
+        <div class="card-text content" id="content{{ post.id }}">
+            <a href="{% url 'answer' post.id %}"
+                 style="text-decoration: none; color: black; font-size: 24px; font-weight:450;">
+                {{ post.content }}
+            </a>
+        </div>
+        <hr>
+
+        {# Post interactive buttons for liking, commenting, and sharing #}
+        <div class="row">
+
+            {# Post Likes Count #}
+            <div class="col-1" id="likes{{ post.id }}" style="color: #65676B; text-align: end;">
+                {{ post.likes.all.count }}
+            </div>
+
+            {% if user.is_authenticated %}
+                <div data-postid="{{ post.id }}" class="col-2 like">
+                    {% if user in post.likes.all %}
+                    <i class='bi bi-heart-fill' style="color: red;"></i> Liked
+                    {% else %}
+                    <i class='bi bi-heart'></i> Like
+                    {% endif %}
+                </div>
+
+                <div class="col-5" style="text-align: center;">
+                    <a href="{% url 'answer' post.id %}" style="text-decoration: none; color: black;">
+                        <i class="bi bi-chat-left-text"></i> Answer
+                    </a>
+                </div>
+
+                {# Post Bookmark Count #}
+                <div class="col-1" id="bm{{ post.id }}" style="color: #65676B; text-align: end;">
+                    {{ post.bookmark.all.count }}
+                </div>
+                <div data-postid="{{ post.id }}" class="col-3 bookmark">  
+                    {% if user in post.bookmark.all %}
+                    <i class="bi bi-bookmark-check-fill"></i> Saved
+                    {% else %}
+                    <i class="bi bi-bookmark"></i> Bookmark
+                    {% endif %}
+                </div>
+                
+                <!-- <div class="col-3"><i class="bi bi-share"></i> Share</div> -->
+
+            {% else %}
+
+            <div class="col-2" data-bs-toggle="modal" data-bs-target="#loginModal"><i class='bi bi-heart'></i> Like
+            </div>
+            <div class="col-5" style="text-align: center;">
+                <a href="{% url 'answer' post.id %}" style="text-decoration: none; color: black;">
+                <i class="bi bi-chat-left-text"></i> Answer..
+                </a>
+            </div>
+            <div class="col-4" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="bi bi-bookmark"></i>
+                Bookmark
+            </div>
+            <!-- <div class="col-3" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="bi bi-share"></i> Share
+            </div> -->
+            <!-- <div class="row">
+                    Login required to use these functionality.
+                </div> -->
+
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% endfor %}

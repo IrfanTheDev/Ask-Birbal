@@ -1,0 +1,183 @@
+{% load static %}
+
+
+
+<div id="container">
+    <div id="containerHeader" style="text-align: center;">
+        <fieldset>
+            <button class="btn btn-outline-warning btn-sm" onclick="document.execCommand('italic',false,null);"
+                title="Italicize Highlighted Text" data-bs-toggle="button"><i class="bi bi-type-italic"></i></button>
+
+            <button class="btn btn-outline-warning btn-sm" onclick="document.execCommand( 'bold',false,null);"
+                title="Bold Highlighted Text" data-bs-toggle="button"><i class="bi bi-type-bold"></i></button>
+
+            <button class="btn btn-outline-warning btn-sm" onclick="document.execCommand( 'underline',false,null);"
+                title="Underline Text" data-bs-toggle="button"><i class="bi bi-type-underline"></i></button>
+
+            <!-- Add Link Btn  -->
+            <button class="btn btn-outline-warning btn-sm" onclick="AddLink()" title="Add Link on Selected Text ">
+                <i class="bi bi-link-45deg"></i>
+            </button>
+
+            <select id="input-font" class="btn btn-outline-warning btn-sm" onchange="changeFont (this);"
+                title="Text-Font" style="width: 100px;">
+                <option value="Arial">Arial</option>
+                <option value="Helvetica">Helvetica</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Sans serif">Sans serif</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Palatino">Palatino</option>
+                <option value="Garamond">Garamond</option>
+                <option value="Comic Sans MS">Comic Sans MS</option>
+                <option value="Arial Black">Arial Black</option>
+                <option value="Tahoma">Tahoma</option>
+                <option value="Comic Sans MS">Comic Sans MS</option>
+            </select>
+            <!-- font size start -->
+            <select id="fontSize" onclick="changeSize()" title="Font-Size" class="btn btn-outline-warning btn-sm">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+            <!-- font size end -->
+
+            <button class="btn btn-outline-warning btn-sm" onclick="document.execCommand( 'strikethrough',false,null);"
+                title="Strike Through Text" data-bs-toggle="button"><i class="bi bi-type-strikethrough"></i>
+            </button>
+
+            <button class="btn btn-outline-warning btn-sm" onclick="document.execCommand( 'justifyLeft',false,null);"
+                title="Align-left" data-bs-toggle="button">
+                <i class="bi bi-justify-left"></i>
+            </button>
+
+            <button class="btn btn-outline-warning btn-sm" onclick="document.execCommand( 'justifyCenter',false,null);"
+                title="Justify Center" data-bs-toggle="button"><i class="bi bi-justify"></i>
+            </button>
+
+            <button class="btn btn-outline-warning btn-sm" onclick="document.execCommand( 'justifyRight',false,null);"
+                title="Ailgn-right" data-bs-toggle="button">
+                <i class="bi bi-justify-right"></i>
+            </button>
+
+            <!-- This Redo Btn is workin fine, but I don't want it's functionality right now in this application.  -->
+            <!-- <button class="fontStyle redo-apply btn btn-outline-warning btn-sm"
+                onclick="document.execCommand( 'redo',false,null);" title="Redo"><i class="bi bi-arrow-bar-right"></i>
+            </button> -->
+
+            <button class="btn btn-outline-warning btn-sm" onclick="document.execCommand( 'undo',false,null);"
+                title="Undo">
+                <i class="bi bi-arrow-bar-left"></i>
+            </button>
+
+            <button class="btn btn-outline-warning btn-sm"
+                onclick="document.execCommand('insertOrderedList', false, null);" title="Ordered List"
+                data-bs-toggle="button"><i class="bi bi-list-ol"></i>
+            </button>
+
+            <button class="btn btn-outline-warning btn-sm"
+                onclick="document.execCommand('insertUnorderedList',false, null)" title="Unordered List"
+                data-bs-toggle="button"><i class="bi bi-list-ul"></i>
+            </button>
+
+            <input class="btn btn-sm" type="color" onchange="backColor()" id="nColor" title="highlight"
+                style="width: 37px; height:30px ; ">
+
+            <!-- This Color Picker for Text is workin fine, but I don't want it's functionality right now in this application.  -->
+            <!-- <input class="color-apply btn btn-sm" type="color" onchange="chooseColor()" id="myColor" title="Text-Color"> -->
+
+
+            <!-- This Unlink Btn is workin fine, but I don't want it's functionality right now in this application.  -->
+            <!-- <button class="btn btn-outline-warning btn-sm unlink" onclick="document.execCommand( 'unlink',false,null);"
+                title="Unlink The selected text.">
+                unlink
+            </button> -->
+
+        </fieldset>   
+    </div>
+
+    <!-- Be careful in this editor div - ">Thre should be no space here</div>" to work for the data text to show up.-->
+    <!-- <div id="editor1" class="form-control" contenteditable="true" data-text="Write Your Answer...."
+        style="white-space: normal; height: 100px; padding:10px;"
+        oninput='this.style.height = "200px"; this.style.height = this.scrollHeight + "px"'
+    ></div> -->
+
+</div>
+
+
+
+
+<script>
+    function chooseColor() {
+        var mycolor = document.getElementById("myColor").value;
+        document.execCommand('foreColor', false, mycolor);
+    }
+
+    function changeFont() {
+        var myFont = document.getElementById("input-font").value;
+        document.execCommand('fontName', false, myFont);
+    }
+
+    function changeSize() {
+        var mysize = document.getElementById("fontSize").value;
+        document.execCommand('fontSize', false, mysize);
+    }
+
+    function checkDiv() {
+        var editorText = document.getElementById("editor1").innerHTML;
+        if (editorText === '') {
+            document.getElementById("editor1").style.border = '5px solid red';
+        }
+    }
+
+    function removeBorder() {
+        document.getElementById("editor1").style.border = '1px solid transparent';
+    }
+
+    function backColor() {
+        var nColor = document.getElementById("nColor").value;
+        document.execCommand('backColor', false, nColor);
+    }
+
+    //Bhai is addlink function ko likhne me bahut dimaag khaarab hua. but finally i did it.
+    // after too many google searches and 3 hrs on stackoverflow.
+    function AddLink() {
+        //identify selected text
+        var selectedText = document.getSelection().toString();
+        // console.log(selectedText)
+        if (selectedText != "") {
+            var linkURL = prompt('Enter a URL:', 'http://');
+            // console.log(linkURL)
+            //create link
+            document.execCommand('createLink', true, linkURL);
+            selectedText.anchorNode.parentElement.target = '_blank';
+            // console.log("done.")
+        } else {
+            alert("Please select some text!");
+        }
+    }
+  
+</script>
+
+
+<style>
+    #container fieldset {
+        padding-top: 8px;
+        height: 50px;
+        background-color: black;
+        border: 2px solid gold;
+        border-radius: 5px;
+    }
+
+    #editor1:empty:before {
+        content: attr(data-text);
+        color: #888;
+        /* background-color: green; */
+    }
+</style>
