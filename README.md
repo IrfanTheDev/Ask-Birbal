@@ -20,9 +20,9 @@ Note the quality of the following clips may be lower due to conversion from vide
 
 
 ### Interactive Buttons.
-<img src="Demo/p5bookmark.gif" width=80%/>
-<img src="Demo/p5like.gif" width=80%/>
-<img src="Demo/p5helpful.gif" width=80%/>
+<img src="Demo/p5bookmark.gif" width=80%/> Bookmark
+<img src="Demo/p5like.gif" width=80%/> Like
+<img src="Demo/p5helpful.gif" width=80%/> Helpful
 
 
 ### Profile.
@@ -31,7 +31,7 @@ Note the quality of the following clips may be lower due to conversion from vide
 
 
 ## Bug Reports and Improvements
-If you experience any bugs or see anything that can be improved or added, please feel free to [open an issue](https://github.com/IrfanTheDev/Network/issues) <!-- update the link --> here or simply contact me through any of the methods below.
+If you experience any bugs or see anything that can be improved or added, please feel free to [open an issue](https://github.com/IrfanTheDev/Ask-Birbal/issues) <!-- update the link --> here or simply contact me through any of the methods below.
  Thanks in advance!
 
 Email: theirfan2020@gmail.com  <br/>
