@@ -10,17 +10,17 @@ When you arrive at the homepage of this website, after login, you can start by w
 
 One can answer the question by clicking on the answer button or on the question itself, which will take them on a different page specific to that question, where they can see other answer written by other users. Here they can write answers in the text editor which give feature to customazie the text as bold, italicized, underlined, different font-sizes, different font-family, highlighting colors, they can even add link to other resoursec too. After posting the answer, the answer can be viewed on that page.
 
-If you  consider any answer helpful then  There is interactive button too for the answers "helpful" which also show how many user consider this answer helpful. There are two other interactive button Like and Bookmarked are also present but for the questions only.  
-**Requirements**
+If you  consider any answer helpful then  There is interactive button too for the answers "helpful" which also show how many user consider this answer helpful. There are two other interactive button Like and Bookmarked are also present but for the questions only.  <br/>
+**Requirements** <br/>
 1.Sufficiently Distinct-
-	    It's lot more complex than the other projects. As one can write answer to those Questions, Also there is multiple interactive Btns on different pages. It has a text editor with multiple features, implemented by me after learning to use execCommand.
-2. My web application utilizes three Django Models on the backend and Javascript on the Front end.
-3. My web application is mobile-responsive.
-4. In Demo folder - There is only gif showing the short demos of my website.
-   Folder Birbal and project5 are default folder created by django.
-	All files are completely written by me.
-5. Run my application via this command in terminal-
-	      python manage.py runserver 
+	    It's lot more complex than the other projects. As one can write answer to those Questions, Also there is multiple interactive Btns on different pages. It has a text editor with multiple features, implemented by me after learning to use execCommand. <br/>
+2. My web application utilizes three Django Models on the backend and Javascript on the Front end. <br/>
+3. My web application is mobile-responsive. <br/>
+4. In Demo folder - There is only gif showing the short demos of my website. <br/>
+   Folder Birbal and project5 are default folder created by django. <br/>
+	All files are completely written by me. <br/>
+5. Run my application via this command in terminal- <br/>
+	      python manage.py runserver <br/>
 
 
 ## Project Demos
