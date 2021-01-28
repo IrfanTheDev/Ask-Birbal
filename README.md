@@ -1,8 +1,8 @@
 # Ask Birbal.
-"Ask Birbal" is a Quora-like question-answer and social network website for asking question, getting answers and following users.
+"Ask Birbal" is a Quora-like question-answer website for asking question, getting answers and following users.
 
 ## Overview
-Ask Birbal is my final project for Harvard CS50's Web Programming with Python and JavaScript course.
+Ask Birbal is my final project for Harvard CS50's Web Programming with Python and JavaScript course.<br/>
 Birbal was one of the nine famous advisor in the court of the Mughal emperor Akbar. He was famous for his wit.<br/>
 Ask birbal is a website that allows users to ask questions and any users who know the answer can answer the question.
 
@@ -13,14 +13,13 @@ One can answer the question by clicking on the answer button or on the question 
 If you  consider any answer helpful then  There is interactive button too for the answers "helpful" which also show how many user consider this answer helpful. There are two other interactive button Like and Bookmarked are also present but for the questions only.  <br/>
 
 **Requirements** <br/>
-1.Sufficiently Distinct- <br/>
-	    It's lot more complex than the other projects. As one can write answer to those Questions, Also there is multiple interactive Btns on different pages. It has a text editor with multiple features, implemented by me after learning to use execCommand. <br/>
-2. My web application utilizes three Django Models on the backend and Javascript on the Front end. <br/>
-3. My web application is mobile-responsive. <br/>
-4. In Demo folder - There is only gif showing the short demos of my website. <br/>
-   Folder Birbal and project5 are default folder created by django. <br/>
+**1.** Sufficiently Distinct- It's lot more complex than the other projects. As one can write answer to those Questions, Also there is multiple interactive Btns on different pages. It has a text editor with multiple features, implemented by me after learning to use execCommand. <br/>
+**2.** My web application utilizes three Django Models on the backend and Javascript on the Front end. <br/>
+**3.** My web application is mobile-responsive. <br/>
+**4.** In Demo folder - There is only gif showing the short demos of my website. <br/>
+   	Folder Birbal and project5 are default folder created by django. <br/>
 	All files are completely written by me. <br/>
-5. Run my application via this command in terminal- <br/>
+**5.** Run my application via this command in terminal- <br/>
 	      python manage.py runserver <br/>
 
 
