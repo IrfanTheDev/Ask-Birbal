@@ -1,5 +1,6 @@
 # Ask Birbal.
 "Ask Birbal" is a Quora-like question-answer website for asking question, getting answers and following users.
+Try it Yourself:- https://ask-birbal.herokuapp.com/
 
 ## Overview
 Ask Birbal is my final project for Harvard CS50's Web Programming with Python and JavaScript course.<br/>
